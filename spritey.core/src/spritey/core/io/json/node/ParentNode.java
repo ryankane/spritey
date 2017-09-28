@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License along with
  * Spritey. If not, see <http://www.gnu.org/licenses/>.
  */
-package spritey.core.io.json;
+package spritey.core.io.json.node;
 
 import java.util.List;
 
@@ -25,9 +25,5 @@ import java.util.List;
 public interface ParentNode {
     List<GroupNode> getGroups();
 
-    void setGroups(List<GroupNode> groups);
-
     List<SpriteNode> getSprites();
-
-    void setSprites(List<SpriteNode> sprites);
 }

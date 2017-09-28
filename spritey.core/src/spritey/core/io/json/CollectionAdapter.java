@@ -17,37 +17,33 @@
  */
 package spritey.core.io.json;
 
-import java.util.List;
+import java.lang.reflect.Type;
+import java.util.Collection;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 /**
- *
+ * Reference: https://stackoverflow.com/a/35881191
  */
-public class GroupNode implements ParentNode {
-    private String name;
-    private List<GroupNode> groups;
-    private List<SpriteNode> sprites;
+public class CollectionAdapter implements JsonSerializer<Collection<?>> {
 
-    public String getName() {
-        return name;
-    }
+    @Override
+    public JsonElement serialize(Collection<?> src, Type typeOfSrc,
+            JsonSerializationContext context) {
+        if ((src == null) || src.isEmpty()) {
+            return null;
+        }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+        JsonArray array = new JsonArray();
 
-    public List<GroupNode> getGroups() {
-        return groups;
-    }
+        for (Object child : src) {
+            JsonElement element = context.serialize(child);
+            array.add(element);
+        }
 
-    public void setGroups(List<GroupNode> groups) {
-        this.groups = groups;
-    }
-
-    public List<SpriteNode> getSprites() {
-        return sprites;
-    }
-
-    public void setSprites(List<SpriteNode> sprites) {
-        this.sprites = sprites;
+        return array;
     }
 }
