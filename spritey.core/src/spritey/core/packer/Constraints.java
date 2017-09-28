@@ -1,17 +1,17 @@
 /**
  * This source file is part of Spritey - the sprite sheet creator.
- * 
+ *
  * Copyright 2011 Maksym Bykovskyy.
- * 
+ *
  * Spritey is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- * 
+ *
  * Spritey is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along with
  * Spritey. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -27,9 +27,9 @@ import spritey.core.Messages;
 public class Constraints {
 
     public static final int MIN_MAXIMUM_WIDTH = 1;
-    public static final int MAX_MAXIMUM_WIDTH = 8192;
+    public static final int MAX_MAXIMUM_WIDTH = 4096; // 8192
     public static final int MIN_MAXIMUM_HEIGHT = 1;
-    public static final int MAX_MAXIMUM_HEIGHT = 8192;
+    public static final int MAX_MAXIMUM_HEIGHT = 4096; // 8192
 
     protected static final int DEFAULT_MAXIMUM_WIDTH = MAX_MAXIMUM_WIDTH;
     protected static final int DEFAULT_MAXIMUM_HEIGHT = MAX_MAXIMUM_HEIGHT;
@@ -51,7 +51,7 @@ public class Constraints {
 
     /**
      * Creates a new instance of Constrains.
-     * 
+     *
      * @param maxWidth
      *        the maximum width.
      * @param maxHeight
@@ -71,7 +71,7 @@ public class Constraints {
 
     /**
      * Returns the maximum size of sprite sheet.
-     * 
+     *
      * @return the maximum size of the sprite sheet.
      */
     public Dimension getMaxSize() {
@@ -80,7 +80,7 @@ public class Constraints {
 
     /**
      * Returns the maximum width of sprite sheet specified by the user.
-     * 
+     *
      * @return the maximum width of the sprite sheet.
      */
     public int getMaxWidth() {
@@ -89,7 +89,7 @@ public class Constraints {
 
     /**
      * Sets the maximum width of the sprite sheet.
-     * 
+     *
      * @param maxWidth
      *        the maximum width to set.
      * @throws IllegalArgumentException
@@ -115,7 +115,7 @@ public class Constraints {
 
     /**
      * Returns the maximum height of sprite sheet specified by the user.
-     * 
+     *
      * @return the maximum height of the sprite sheet.
      */
     public int getMaxHeight() {
@@ -124,7 +124,7 @@ public class Constraints {
 
     /**
      * Sets the maximum height of the sprite sheet.
-     * 
+     *
      * @param maxHeight
      *        the maximum height to set.
      * @throws IllegalArgumentException
@@ -151,7 +151,7 @@ public class Constraints {
     /**
      * Returns <code>true</code> if sprite sheet dimensions have to be power of
      * two.
-     * 
+     *
      * @return <code>true</code> if sprite sheet has to be power of two,
      *         otherwise <code>false</code>.
      */
@@ -161,7 +161,7 @@ public class Constraints {
 
     /**
      * Sets whether sprite sheet size has to be power of two.
-     * 
+     *
      * @param isPowerOfTwo
      *        specifies whether to keep sprite sheet size to be power of two.
      */
@@ -183,7 +183,7 @@ public class Constraints {
     /**
      * Returns <code>true</code> if sprite sheet has to maintain aspect ratio
      * when resizing.
-     * 
+     *
      * @return <code>true</code> is aspect ratio is maintained when sprite sheet
      *         is resized, otherwise <code>false</code>.
      */
@@ -193,7 +193,7 @@ public class Constraints {
 
     /**
      * Sets whether sprite sheet should maintain aspect ratio when resizing.
-     * 
+     *
      * @param maintainRatio
      *        specifies whether to maintain aspect ratio.
      */
@@ -205,7 +205,7 @@ public class Constraints {
 
     /**
      * Returns the aspect ratio <code>maxWidth:maxHeight</code>.
-     * 
+     *
      * @return the aspect ratio.
      */
     public float getAspectRatio() {
@@ -214,7 +214,7 @@ public class Constraints {
 
     /**
      * Returns <code>true</code> if specified value is power of two.
-     * 
+     *
      * @param value
      *        the value to check.
      * @return <code>true</code> if value is power of two, otherwise
@@ -226,13 +226,13 @@ public class Constraints {
 
     /**
      * Returns the next power of two of the specified value.
-     * 
+     *
      * @param value
      *        the value to round up to the next power of two.
      * @return the next power of two.
      */
     public static int nextPowerOfTwo(final int value) {
-        return 1 << 32 - Integer.numberOfLeadingZeros(value);
+        return 1 << (32 - Integer.numberOfLeadingZeros(value));
     }
 
 }

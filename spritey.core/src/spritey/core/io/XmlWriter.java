@@ -1,17 +1,17 @@
 /**
  * This source file is part of Spritey - the sprite sheet creator.
- * 
+ *
  * Copyright 2011 Maksym Bykovskyy.
- * 
+ *
  * Spritey is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- * 
+ *
  * Spritey is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along with
  * Spritey. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -32,6 +32,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.TransformerException;
 
+import com.jamesmurty.utils.XMLBuilder;
+
 import spritey.core.Group;
 import spritey.core.Messages;
 import spritey.core.Node;
@@ -39,22 +41,19 @@ import spritey.core.Sheet;
 import spritey.core.Sprite;
 import spritey.core.filter.VisibleSpriteFilter;
 
-import com.jamesmurty.utils.XMLBuilder;
-
 /**
  * A writer for serializing sprite sheet in XML format. This writer skips empty
  * groups and invisible sprites.
  */
 public class XmlWriter implements Writer {
-
     private static final String SHEET = "sheet";
     private static final String SPRITE = "sprite";
     private static final String GROUP = "group";
 
     @Override
-    public void write(Sheet sheet, File file) throws FileNotFoundException,
-            IOException {
-        if (null == sheet) {
+    public void write(Sheet sheet, File file)
+            throws FileNotFoundException, IOException {
+        if (sheet == null) {
             throw new IllegalArgumentException(Messages.NULL);
         }
 
@@ -73,7 +72,7 @@ public class XmlWriter implements Writer {
 
     /**
      * Builds the specified node.
-     * 
+     *
      * @param builder
      *        the builder for generating XML.
      * @param node
@@ -108,7 +107,7 @@ public class XmlWriter implements Writer {
 
     /**
      * Builds the XML for the specified tree.
-     * 
+     *
      * @param sheet
      *        the sheet node.
      * @throws ParserConfigurationException
@@ -138,7 +137,7 @@ public class XmlWriter implements Writer {
 
     /**
      * Writers the specified builder to the file system.
-     * 
+     *
      * @param builder
      *        the builder to write to the file system.
      * @param file
@@ -160,5 +159,4 @@ public class XmlWriter implements Writer {
         builder.toWriter(writer, p);
         writer.close();
     }
-
 }

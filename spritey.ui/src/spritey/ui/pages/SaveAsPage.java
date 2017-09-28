@@ -1,17 +1,17 @@
 /**
  * This source file is part of Spritey - the sprite sheet creator.
- * 
+ *
  * Copyright 2011 Maksym Bykovskyy.
- * 
+ *
  * Spritey is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- * 
+ *
  * Spritey is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along with
  * Spritey. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -47,7 +47,7 @@ public class SaveAsPage extends WizardPage {
     static final String NAME = "SAVE_AS";
 
     static final String[] IMAGE_FORMATS = { "BMP", "GIF", "PNG" };
-    static final String[] METADATA_FORMATS = { "XML" };
+    static final String[] METADATA_FORMATS = { "XML", "JSON" };
 
     private Text nameText;
     private Text locationText;
@@ -106,7 +106,7 @@ public class SaveAsPage extends WizardPage {
      * Returns <code>true</code> if the specified name does not contain any
      * illegal characters by creating a temporary file in the default temporary
      * directory.
-     * 
+     *
      * @param name
      *        the name to verify.
      * @return <code>true</code> if name is valid, otherwise <code>false</code>.
@@ -128,7 +128,7 @@ public class SaveAsPage extends WizardPage {
 
     /**
      * Returns <code>true</code> if the specified file is writable.
-     * 
+     *
      * @param file
      *        the file to test.
      * @return <code>true</code> if file is writable, otherwise
@@ -166,7 +166,7 @@ public class SaveAsPage extends WizardPage {
 
     /**
      * Creates name controls.
-     * 
+     *
      * @param parent
      *        the parent composite.
      */
@@ -175,8 +175,8 @@ public class SaveAsPage extends WizardPage {
         nameLabel.setText(Messages.SAVE_AS_PAGE_NAME);
 
         nameText = new Text(parent, SWT.BORDER);
-        GridData data = new GridData(GridData.HORIZONTAL_ALIGN_FILL
-                | GridData.GRAB_HORIZONTAL);
+        GridData data = new GridData(
+                GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL);
         data.horizontalSpan = 2;
         nameText.setLayoutData(data);
         nameText.addModifyListener(new ModifyListener() {
@@ -188,7 +188,7 @@ public class SaveAsPage extends WizardPage {
 
     /**
      * Creates location controls.
-     * 
+     *
      * @param parent
      *        the parent composite.
      */
@@ -197,8 +197,8 @@ public class SaveAsPage extends WizardPage {
         locationLabel.setText(Messages.SAVE_AS_PAGE_LOCATION);
 
         locationText = new Text(parent, SWT.BORDER);
-        GridData data = new GridData(GridData.HORIZONTAL_ALIGN_FILL
-                | GridData.GRAB_HORIZONTAL);
+        GridData data = new GridData(
+                GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL);
         locationText.setLayoutData(data);
         locationText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
@@ -219,7 +219,7 @@ public class SaveAsPage extends WizardPage {
 
     /**
      * Creates image controls.
-     * 
+     *
      * @param parent
      *        the parent composite.
      */
@@ -242,7 +242,7 @@ public class SaveAsPage extends WizardPage {
 
     /**
      * Creates metadata controls.
-     * 
+     *
      * @param parent
      *        the parent composite.
      */
@@ -265,7 +265,7 @@ public class SaveAsPage extends WizardPage {
 
     /**
      * Creates override confirmation controls.
-     * 
+     *
      * @param parent
      *        the parent composite.
      */
@@ -295,7 +295,7 @@ public class SaveAsPage extends WizardPage {
 
     /**
      * Specifies whether existing files should be overwritten without a warning.
-     * 
+     *
      * @return <code>true</code> if overwrite is checked.
      */
     public boolean isOverwrite() {
@@ -304,17 +304,17 @@ public class SaveAsPage extends WizardPage {
 
     /**
      * Returns a file to write sprite sheet image to.
-     * 
+     *
      * @return an instance of a file to write to.
      */
     public File getImageFile() {
-        return new File(locationText.getText(), nameText.getText() + "."
-                + imageCombo.getText().toLowerCase());
+        return new File(locationText.getText(),
+                nameText.getText() + "." + imageCombo.getText().toLowerCase());
     }
 
     /**
      * Returns a file to write sprite sheet configuration to.
-     * 
+     *
      * @return an instance of a file to write to.
      */
     public File getMetadataFile() {

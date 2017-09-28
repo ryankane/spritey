@@ -1,17 +1,17 @@
 /**
  * This source file is part of Spritey - the sprite sheet creator.
- * 
+ *
  * Copyright 2011 Maksym Bykovskyy.
- * 
+ *
  * Spritey is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- * 
+ *
  * Spritey is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along with
  * Spritey. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -31,7 +31,7 @@ public class MetadataWriter extends AbstractWriter {
 
     /**
      * Returns <code>true</code> if the specified file is XML.
-     * 
+     *
      * @param file
      *        the file to check.
      * @return <code>true</code> if the file is XML, otherwise
@@ -41,6 +41,19 @@ public class MetadataWriter extends AbstractWriter {
         return getFileExt(file).equalsIgnoreCase("xml");
     }
 
+    protected boolean isJson(File file) {
+        return getFileExt(file).equalsIgnoreCase("json");
+    }
+
+    private void writeXml(Sheet sheet, File file)
+            throws FileNotFoundException, IOException {
+        new XmlWriter().write(sheet, file);
+    }
+
+    private void writeJson(Sheet sheet, File file) throws IOException {
+        new JsonWriter().write(sheet, file);
+    }
+
     @Override
     public void write(Sheet sheet, File file) throws IllegalArgumentException,
             FileNotFoundException, IOException {
@@ -48,7 +61,9 @@ public class MetadataWriter extends AbstractWriter {
         validateNotNull(file, Messages.NULL);
 
         if (isXml(file)) {
-            new XmlWriter().write(sheet, file);
+            writeXml(sheet, file);
+        } else if (isJson(file)) {
+            writeJson(sheet, file);
         } else {
             throw new RuntimeException("Unsupported file extension. "
                     + getFileExt(file) + " is currently not supported.");
