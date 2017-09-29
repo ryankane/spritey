@@ -1,17 +1,17 @@
 /**
  * This source file is part of Spritey - the sprite sheet creator.
- * 
+ *
  * Copyright 2011 Maksym Bykovskyy.
- * 
+ *
  * Spritey is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- * 
+ *
  * Spritey is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along with
  * Spritey. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -83,41 +83,12 @@ public class ConstraintsTest {
     public void setMaxWidthToPowerOfTwoWhenMaintainPowerOfTwoEnabled() {
         when(constraints.maintainPowerOfTwo()).thenReturn(true);
 
-        constraints.setMaxWidth(1);
-        assertEquals(1, constraints.getMaxWidth());
+        for (int i = 0; i < 12; i++) {
+            int powerOfTwo = (int) Math.pow(2, i); // 1 -> 2048
 
-        constraints.setMaxWidth(2);
-        assertEquals(2, constraints.getMaxWidth());
-
-        constraints.setMaxWidth(4);
-        assertEquals(4, constraints.getMaxWidth());
-
-        constraints.setMaxWidth(8);
-        assertEquals(8, constraints.getMaxWidth());
-
-        constraints.setMaxWidth(16);
-        assertEquals(16, constraints.getMaxWidth());
-
-        constraints.setMaxWidth(32);
-        assertEquals(32, constraints.getMaxWidth());
-
-        constraints.setMaxWidth(64);
-        assertEquals(64, constraints.getMaxWidth());
-
-        constraints.setMaxWidth(128);
-        assertEquals(128, constraints.getMaxWidth());
-
-        constraints.setMaxWidth(256);
-        assertEquals(256, constraints.getMaxWidth());
-
-        constraints.setMaxWidth(512);
-        assertEquals(512, constraints.getMaxWidth());
-
-        constraints.setMaxWidth(1024);
-        assertEquals(1024, constraints.getMaxWidth());
-
-        constraints.setMaxWidth(2048);
-        assertEquals(2048, constraints.getMaxWidth());
+            constraints.setMaxWidth(powerOfTwo);
+            assertEquals(powerOfTwo, constraints.getMaxWidth());
+        }
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -147,41 +118,12 @@ public class ConstraintsTest {
     public void setMaxHeightToPowerOfTwoWhenMaintainPowerOfTwoEnabled() {
         when(constraints.maintainPowerOfTwo()).thenReturn(true);
 
-        constraints.setMaxHeight(1);
-        assertEquals(1, constraints.getMaxHeight());
+        for (int i = 0; i < 12; i++) {
+            int powerOfTwo = (int) Math.pow(2, i); // 1 -> 2048
 
-        constraints.setMaxHeight(2);
-        assertEquals(2, constraints.getMaxHeight());
-
-        constraints.setMaxHeight(4);
-        assertEquals(4, constraints.getMaxHeight());
-
-        constraints.setMaxHeight(8);
-        assertEquals(8, constraints.getMaxHeight());
-
-        constraints.setMaxHeight(16);
-        assertEquals(16, constraints.getMaxHeight());
-
-        constraints.setMaxHeight(32);
-        assertEquals(32, constraints.getMaxHeight());
-
-        constraints.setMaxHeight(64);
-        assertEquals(64, constraints.getMaxHeight());
-
-        constraints.setMaxHeight(128);
-        assertEquals(128, constraints.getMaxHeight());
-
-        constraints.setMaxHeight(256);
-        assertEquals(256, constraints.getMaxHeight());
-
-        constraints.setMaxHeight(512);
-        assertEquals(512, constraints.getMaxHeight());
-
-        constraints.setMaxHeight(1024);
-        assertEquals(1024, constraints.getMaxHeight());
-
-        constraints.setMaxHeight(2048);
-        assertEquals(2048, constraints.getMaxHeight());
+            constraints.setMaxHeight(powerOfTwo);
+            assertEquals(powerOfTwo, constraints.getMaxHeight());
+        }
     }
 
     @Test(expected = IllegalArgumentException.class)
